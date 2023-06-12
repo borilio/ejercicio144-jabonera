@@ -18,7 +18,7 @@ export class JaboneraComponent {
 
 
   constructor() {
-    this._nombre = "Deliplus";
+    this._nombre = "Silvercrest";
     this._nivelMaximo = 500;
     this._nivelActual = 0;
     this._cantidadDispensada = 10;
