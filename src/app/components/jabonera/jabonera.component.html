@@ -1,1 +1,48 @@
-<p>jabonera works!</p>
+<div>
+  <div id="botonera" class="btn-group-vertical float-start">
+    <button (click)="power()" class="btn" [class]=" encendido ? 'btn-outline-success': 'btn-outline-danger'"><i class="bi bi-power"></i></button>
+    <button (click)="cargarBateria()" class="btn btn-outline-primary">Cargar baterías</button>
+    <button (click)="rellenarJabon()"  class="btn btn-outline-primary">Rellenar jabón</button>
+  </div>
+
+  <div class="float-start">
+    <img
+      (click)="dispensar()"
+      [src]="encendido ? imagenOn: imagenOff"
+      class="jabonera img-fluid"
+      [alt]="'Imagen de jabonera ' + (encendido ? 'encendida': 'apagada')"
+      [title]="'Imagen de jabonera ' + (encendido ? 'encendida': 'apagada')"
+    />
+    <div id="datos">
+      <p class="h4 text-center">{{nombre}}</p>
+
+      <label for="bateria" class="form-label">
+        <i class="bi" [class]="
+        {
+          'bi-battery-full': bateria >=50 && bateria <=100,
+          'bi-battery-half': bateria >=15 && bateria < 50,
+          'bi-battery': bateria >= 0 && bateria < 15,
+        }"
+        ></i>
+        <span>{{bateria | number }}%</span>
+      </label>
+      <div class="progress" id="bateria">
+        <div class="progress-bar" [class]="
+        {
+        'bg-success' : bateria >= 15,
+        'bg-danger' : bateria < 15
+        }" [style.width.%]="bateria"></div>
+      </div>
+      <hr/>
+      <label for="deposito" class="form-label">
+        <i class="bi bi-moisture"></i>
+        <span>{{nivelActual}} ml / {{nivelMaximo}} ml ({{obtenerPorcentajeJabon()}}%)</span>
+      </label>
+      <div class="progress" id="deposito">
+        <div class="progress-bar bg-info" [style.width.%]="obtenerPorcentajeJabon()"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
